@@ -45,5 +45,26 @@
       x
     </button>
     </div>
+
+
+    <div class = "rock_paper_scissors_game"> 
+      <button id = "new_game_rock_paper_scissors" onclick = "make_new_rock_paper_scissors_game()">New Game</button>
+      user score: <span id="user_score" class="counters">0</span>
+      pc score: <span id="pc_score" class="counters">0</span>
+    </br>
+      <label>
+        <input type="radio" name="Rock_Paper_Scissors" value="rock" onclick = "Rock_Paper_Scissors_game()">
+        <img src="/img/rock.png" style="width:60px;height:60px;">
+      </label>
+    <label>
+      <input type="radio" name="Rock_Paper_Scissors" value="paper" onclick = "Rock_Paper_Scissors_game()">
+      <img src="/img/paper.png" style="width:60px;height:60px;">
+    </label>
+    <label>
+      <input type="radio" name="Rock_Paper_Scissors" value="scissors" onclick = "Rock_Paper_Scissors_game()">
+      <img src="/img/scissors.png" style="width:60px;height:60px;">
+    </label>
+    <div id = "user_vs_pc_sings"></div>
+    </div>
   </body>
 </html>

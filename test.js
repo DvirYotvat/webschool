@@ -377,3 +377,69 @@ function calculator_3() {
   let str = `Result = ${first * second}`;
   document.getElementById("answer_calculator").innerHTML = str;
 }
+
+////////////////////////////// 2 אבן נייר ומספריים ////////////////////////////////////////
+
+user_score = 0;
+pc_score = 0;
+
+function random_sing() {
+  let random = Math.floor(Math.random() * 3) + 1;
+  if (random == 1) {
+    return "rock";
+  } else if (random == 2) {
+    return "paper";
+  } else {
+    return "scissors";
+  }
+}
+
+function comper_sings(sing1, sing2) {
+  if (sing1 == sing2) {
+    return "doual";
+  } else if (sing1 == "rock" && sing2 == "paper") {
+    return "sing2";
+  } else if (sing1 == "rock" && sing2 == "scissors") {
+    return "sing1";
+  } else if (sing1 == "paper" && sing2 == "rock") {
+    return "sing1";
+  } else if (sing1 == "paper" && sing2 == "scissors") {
+    return "sing2";
+  } else if (sing1 == "scissors" && sing2 == "rock") {
+    return "sing2";
+  } else if (sing1 == "scissors" && sing2 == "leaf") {
+    return "sing1";
+  }
+}
+
+function Rock_Paper_Scissors_game() {
+  let radio_check = document.getElementsByName("Rock_Paper_Scissors");
+  let user_answer;
+  for (i = 0; i < radio_check.length; i++) {
+    if (radio_check[i].checked) {
+      user_answer = radio_check[i].value;
+    }
+  }
+  let pc_sing = random_sing();
+  let res = comper_sings(user_answer, pc_sing);
+  let str = `USER: <img id = "user_vs_pc" src="/img/${user_answer}.png" style="width:60px;height:60px;"> <h1>vs</h1>  PC: <img id = "user_vs_pc" src="/img/${pc_sing}.png" style="width:60px;height:60px;">`;
+  document.getElementById("user_vs_pc_sings").innerHTML = str;
+  if (res == "sing1") {
+    alert("player wins");
+    user_score++;
+    document.getElementById("user_score").textContent = user_score;
+  } else if (res == "sing2") {
+    alert("pc wins");
+    pc_score++;
+    document.getElementById("pc_score").textContent = pc_score;
+  } else {
+    alert("doual");
+  }
+}
+
+function make_new_rock_paper_scissors_game() {
+  user_score = 0;
+  pc_score = 0;
+  document.getElementById("user_score").textContent = user_score;
+  document.getElementById("pc_score").textContent = pc_score;
+}
