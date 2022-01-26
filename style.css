@@ -1,0 +1,28 @@
+body {
+  margin-left: 13%;
+  margin-right: 13%;
+}
+
+.calculator {
+  color: green;
+  margin-top: 5%;
+  background-color: bisque;
+  border: 2px solid black;
+}
+.Question_1 {
+  color: aqua;
+  margin-top: 5%;
+  background-color: bisque;
+  border: 2px solid black;
+}
+
+#answer_question_1_a {
+  color: magenta;
+}
+#answer_question_1_b {
+  color: orange;
+}
+
+#answer_calculator {
+  color: red;
+}
