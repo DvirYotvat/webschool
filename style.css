@@ -27,6 +27,7 @@ body {
   color: red;
 }
 .rock_paper_scissors_game {
+  text-align: center;
   color: blueviolet;
   margin-top: 5%;
   background-color: bisque;
