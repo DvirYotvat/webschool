@@ -407,7 +407,7 @@ function comper_sings(sing1, sing2) {
     return "sing2";
   } else if (sing1 == "scissors" && sing2 == "rock") {
     return "sing2";
-  } else if (sing1 == "scissors" && sing2 == "leaf") {
+  } else if (sing1 == "scissors" && sing2 == "paper") {
     return "sing1";
   }
 }
