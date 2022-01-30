@@ -443,3 +443,111 @@ function make_new_rock_paper_scissors_game() {
   document.getElementById("user_score").textContent = user_score;
   document.getElementById("pc_score").textContent = pc_score;
 }
+
+////////////////////////////// quiz game 2 ////////////////////////////////////////
+let life = 3;
+quiz_index = 1;
+
+const quiz = {
+  1: {
+    question: "What is the first name of Iron Man?",
+    answer: "Tony",
+  },
+  2: {
+    question: "Who is called the god of lightning in Avengers?",
+    answer: "Thor",
+  },
+  3: {
+    question: "Who carries a shield of American flag theme in Avengers?",
+    answer: "Captain America",
+  },
+  4: {
+    question: "Which avenger is green in color?",
+    answer: "Hulk",
+  },
+  5: {
+    question: "Which avenger can change it's size?",
+    answer: "AntMan",
+  },
+  6: {
+    question: "Which Avenger is red in color and has mind stone?",
+    answer: "Vision",
+  },
+};
+
+let quiz_options = {
+  1: "Tony",
+  2: "Thor",
+  3: "Captain America",
+  4: "Hulk",
+  5: "AntMan",
+  6: "Vision",
+};
+
+function check(str1, str2) {
+  if (str1 == str2) return true;
+  else return false;
+}
+
+function random_answers(num_of_questions) {
+  let list_random = [];
+  let flag = false;
+
+  while (list_random.length != num_of_questions) {
+    let random = Math.floor(Math.random() * num_of_questions) + 1;
+    for (let i = 0; i < list_random.length; i++) {
+      if (list_random[i] == random) flag = true;
+    }
+    if (flag == false) {
+      list_random.push(random);
+    } else {
+      flag = false;
+    }
+  }
+  return list_random;
+}
+
+function show_quiz() {
+  if (life == 0) {
+    alert("you lose");
+    life = 3;
+    quiz_index = 1;
+    new_game();
+    return;
+  }
+  let random = random_answers(6);
+  let str = `<h1> ${quiz[quiz_index].question} </h1> </br>`;
+  let answer = ``;
+  for (let j = 0; j < random.length; j++) {
+    answer += `<b> <input type="radio" name ="check_button" value = ${
+      quiz_options[random[j]]
+    }> ${quiz_options[random[j]]} </b> </br>`;
+  }
+  str += answer;
+  str += `<button id = "submit" type= "button" onclick="get_check_button()"> submit answer </button> </br>`;
+  $("#quiz_questions").html(str);
+}
+
+function get_check_button() {
+  let user_answer = $('input[name="check_button"]:checked').val();
+  if (!check(user_answer, quiz[quiz_index].answer)) {
+    life--;
+    alert("wrong ansewr");
+  } else {
+    alert("good answer");
+  }
+
+  if (quiz_index >= Object.keys(quiz).length) {
+    alert("you win");
+    new_game();
+  }
+
+  quiz_index++;
+  show_quiz();
+}
+
+function new_game() {
+  life = 3;
+  quiz_index = 1;
+  show_quiz();
+}
