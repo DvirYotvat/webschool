@@ -510,9 +510,7 @@ function random_answers(num_of_questions) {
 function show_quiz() {
   if (life == 0) {
     alert("you lose");
-    life = 3;
-    quiz_index = 1;
-    new_game();
+    $("#quiz_new_btn").click();
     return;
   }
   let random = random_answers(6);
@@ -539,15 +537,23 @@ function get_check_button() {
 
   if (quiz_index >= Object.keys(quiz).length) {
     alert("you win");
-    new_game();
+    $("#quiz_new_btn").click();
   }
 
   quiz_index++;
   show_quiz();
 }
 
-function new_game() {
-  life = 3;
-  quiz_index = 1;
-  show_quiz();
-}
+// function new_game() {
+//   life = 3;
+//   quiz_index = 1;
+//   show_quiz();
+// }
+
+$(".quiz_game").ready(function () {
+  $("#quiz_new_btn").click(function () {
+    life = 3;
+    quiz_index = 1;
+    show_quiz();
+  });
+});
