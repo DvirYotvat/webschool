@@ -557,3 +557,56 @@ $(".quiz_game").ready(function () {
     show_quiz();
   });
 });
+
+////////////////////////////// json request by http ////////////////////////////////////////
+$(".json_ex1").ready(function () {
+  $("#json_btn").click(function () {
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(xhttp.responseText);
+        let table = `<table style = "border: 13px solid blue">`;
+
+        for (let i = 0; i < data.length; i++) {
+          table += `<tr>`;
+          table += `<td> ${data[i].Animal} </td>`;
+          table += `<td> ${data[i].family} </td>`;
+          table += `<td> ${data[i].food} </td>`;
+          table += `<td> ${data[i].age} </td>`;
+          table += `</tr>`;
+        }
+        table += `</table>`;
+        $("#json_request").html(table);
+      }
+    };
+
+    xhttp.open("GET", "data.json");
+    xhttp.send();
+  });
+});
+
+// function get_json() {
+//   let xhttp = new XMLHttpRequest();
+
+//   xhttp.onreadystatechange = function () {
+//     if (this.readyState == 4 && this.status == 200) {
+//       let data = JSON.parse(xhttp.responseText);
+//       let table = `<table style = "border: 13px solid blue">`;
+
+//       for (let i = 0; i < data.length; i++) {
+//         table += `<tr>`;
+//         table += `<td> ${data[i].Animal} </td>`;
+//         table += `<td> ${data[i].family} </td>`;
+//         table += `<td> ${data[i].food} </td>`;
+//         table += `<td> ${data[i].age} </td>`;
+//         table += `</tr>`;
+//       }
+//       table += `</table>`;
+//       $("#json_request").html(table);
+//     }
+//   };
+
+//   xhttp.open("GET", "data.json");
+//   xhttp.send();
+// }
