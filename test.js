@@ -610,3 +610,103 @@ $(".json_ex1").ready(function () {
 //   xhttp.open("GET", "data.json");
 //   xhttp.send();
 // }
+
+////////////////////////////// memory game ////////////////////////////////////////
+
+$(document).ready(function () {
+  $("#cmdNewGame").click(function () {
+    makeNewGame();
+  });
+  makeNewGame();
+});
+
+function makeNewGame() {
+  let imgArr = [];
+  let numCheck;
+  let temp;
+  let cellCounter = 0;
+  let rightCounter = 0;
+  let clickcount = 0;
+  let fliped = ["", ""];
+  let matchcount = 0;
+  let flip_size = 0;
+
+  $("#matchesCounter").text(matchcount);
+  $("#movesCounter").text(clickcount);
+
+  for (let i = 1; i <= 30; i++) imgArr[i] = i;
+
+  let str = `<table id = 'tbCards'> <tr>`;
+
+  while (1) {
+    numCheck = getRandNumber(31);
+    cellCounter = 0;
+
+    if (imgArr[numCheck] != null) {
+      if (numCheck > 15) {
+        imgArr[numCheck] = null;
+        numCheck = numCheck - 15;
+      } else imgArr[numCheck] = null;
+
+      rightCounter++;
+      temp = `<img src="img/backCard.png" id=img/${numCheck.toString()} class="card">`;
+      str += `<td> ${temp} </td>`;
+    }
+    if (rightCounter == 5) {
+      rightCounter = 0;
+      str += `</tr> <tr>`;
+    }
+
+    for (let i = 1; i < imgArr.length + 1; i++) {
+      if (imgArr[i] == null) cellCounter++;
+    }
+
+    if (cellCounter >= imgArr.length) {
+      break;
+    }
+  }
+
+  str += `</tr>`;
+
+  $(".board").html(str);
+  $(".card").click((e) => {
+    let temp2 = $(e.target);
+    if (temp2.hasClass("flip")) return;
+    clickcount += 1;
+
+    if (flip_size == 2) {
+      $(".flip").attr("src", "img/backCard.png");
+      $(".flip").toggleClass("flip");
+      flip_size = 0;
+    }
+
+    if (clickcount % 2 == 1) {
+      flip_size++;
+      temp2.toggleClass("flip");
+      fliped[0] = temp2.attr("id");
+      temp2.attr("src", `${temp2.attr("id")}.png`);
+      return;
+    }
+
+    if (clickcount % 2 == 0) {
+      flip_size++;
+      temp2.toggleClass("flip");
+      fliped[1] = temp2.attr("id");
+      temp2.attr("src", `${temp2.attr("id")}.png`);
+      $("#movesCounter").text(clickcount / 2);
+    }
+
+    if (fliped[0] == fliped[1]) {
+      $(".flip").unbind();
+      $(".flip").toggleClass("flip");
+      matchcount += 1;
+      $("#matchesCounter").text(matchcount);
+    }
+    if (matchcount == 15)
+      alert(`you won!!!! it's only took you ${clickcount / 2} moves`);
+  });
+}
+
+function getRandNumber(max) {
+  return Math.floor(Math.random() * max + 1);
+}
