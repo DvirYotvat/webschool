@@ -562,26 +562,32 @@ $(".quiz_game").ready(function () {
 $(".json_ex1").ready(function () {
   $("#json_btn").click(function () {
     let xhttp = new XMLHttpRequest();
-
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         let data = JSON.parse(xhttp.responseText);
-        let table = `<table style = "border: 13px solid blue">`;
+        let table = '<table id = "json_table">';
 
-        for (let i = 0; i < data.length; i++) {
-          table += `<tr>`;
-          table += `<td> ${data[i].Animal} </td>`;
-          table += `<td> ${data[i].family} </td>`;
-          table += `<td> ${data[i].food} </td>`;
-          table += `<td> ${data[i].age} </td>`;
-          table += `</tr>`;
+        table += `<th> <h2> Animal </h2> </th>`;
+        table += `<th> <h2> family </h2> </th>`;
+        table += `<th> <h2> food </h2></th>`;
+        table += `<th> <h2> age </h2> </th>`;
+
+        for (i = 0; i < data.length; i++) {
+          table += "<tr>";
+
+          table += "<td>" + data[i].Animal + "</td>";
+          table += "<td>" + data[i].family + "</td>";
+          table += "<td>" + data[i].food + "</td>";
+          table += "<td>" + data[i].age + "</td>";
+
+          table += "</tr>";
         }
-        table += `</table>`;
+        table += "</table>";
         $("#json_request").html(table);
       }
     };
 
-    xhttp.open("GET", "data.json");
+    xhttp.open("GET", "data.json", true);
     xhttp.send();
   });
 });

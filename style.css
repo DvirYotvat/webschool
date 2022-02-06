@@ -41,11 +41,70 @@ body {
   border: 2px solid black;
 }
 
-#board {
-  width: 10%;
-  height: 10%;
+.json_ex1 {
+  text-align: center;
+  color: black;
+  margin-top: 5%;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+#json_table {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table#json_table tr:nth-child(odd) {
+  background-color: #86b4a3;
+  color: white;
+}
+table#json_table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+table#json_table th {
+  background-color: #86b4a3;
+  color: white;
+}
+
+.memory_game {
+  margin-top: 5%;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.board {
+  background: url("img/underwater.jpg") no-repeat center center fixed;
+  box-sizing: border-box;
+  justify-content: center;
 }
 .card {
-  width: 40%;
-  height: 40%;
+  width: 42%;
+  height: 42%;
+}
+
+#cmdNewGame {
+  border: 0 solid #e5e7eb;
+  line-height: 50%;
+  padding: 0.75rem 1.65rem;
+  width: 16%;
+  transform: rotate(-2deg);
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
+#cmdNewGame:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+#cmdNewGame:active:after {
+  bottom: 2px;
+  left: 2px;
 }
