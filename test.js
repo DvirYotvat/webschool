@@ -716,3 +716,63 @@ function makeNewGame() {
 function getRandNumber(max) {
   return Math.floor(Math.random() * max + 1);
 }
+
+////////////////////////////// click counter with local storage ////////////////////////////////////////
+
+$(".click_counter_local_storage").ready(function () {
+  $("#click_me").click(function () {
+    if (typeof Storage !== "undefinde") {
+      if (localStorage.num_of_clicks) {
+        localStorage.num_of_clicks = parseInt(localStorage.num_of_clicks) + 1;
+      } else localStorage.num_of_clicks = 1;
+
+      $("#click_count").html(
+        `you clicked the button ${localStorage.num_of_clicks} times`
+      );
+    } else alert("Soory, your browser dose not support web storage");
+  });
+});
+
+////////////////////////////// login and logout with local storage ////////////////////////////////////////
+
+$(".log_in").ready(function () {
+  if (localStorage.getItem("userName")) {
+    $(".sucsses_login").show();
+    $("#login_form").hide();
+  } else {
+    $(".sucsses_login").hide();
+  }
+
+  $("#log_out_submit").click(function () {
+    $(".sucsses_login").hide();
+    $("#login_form").show();
+    localStorage.removeItem("userName");
+  });
+
+  $("#login_submit").click(function () {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(xhttp.responseText);
+        let user = $("#user_name").val();
+        let password = $("#user_password").val();
+        let flag = false;
+
+        for (i = 0; i < data.length; i++) {
+          if (data[i].user_name == user && data[i].password == password) {
+            flag = true;
+          }
+        }
+
+        if (flag == true) {
+          $(".sucsses_login").show();
+          $("#login_form").hide();
+          localStorage.setItem("userName", user);
+        } else alert("login error");
+      }
+    };
+
+    xhttp.open("GET", "login.json", true);
+    xhttp.send();
+  });
+});

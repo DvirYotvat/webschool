@@ -108,3 +108,95 @@ table#json_table th {
   bottom: 2px;
   left: 2px;
 }
+
+.click_counter_local_storage {
+  margin-top: 5%;
+  border: 1px solid #000000;
+}
+
+#click_me {
+  color: #04aa6d;
+  width: 20%;
+  border: 0 solid #e5e7eb;
+  line-height: 50%;
+  padding: 0.75rem 1.65rem;
+  transform: rotate(-2deg);
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
+#click_me:after {
+  opacity: 0.7;
+  color: rgb(255, 255, 255);
+  content: "";
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+#click_me:active:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+.log_in {
+  background: url("img/background.jpg") no-repeat center center fixed;
+  height: 100%;
+}
+#login_form {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+  border-radius: 10%;
+  background-color: rgb(255, 255, 255, 0.33);
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  color: #04aa6d;
+}
+
+#login_submit {
+  color: #04aa6d;
+  width: 100%;
+  padding: 14px 20px;
+}
+
+#login_submit:hover {
+  opacity: 0.7;
+  color: rgb(255, 255, 255);
+  background-color: #04aa6d;
+}
+
+.login_pic {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.login_pic {
+  width: 40%;
+  border-radius: 50%;
+}
+.sucsses_login {
+  text-align: center;
+}
+
+#log_out_submit {
+  color: #04aa6d;
+  width: 20%;
+  padding: 14px 20px;
+}
+
+#log_out_submit:hover {
+  opacity: 0.7;
+  color: rgb(255, 255, 255);
+  background-color: #04aa6d;
+}
