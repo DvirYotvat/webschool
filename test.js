@@ -739,6 +739,13 @@ $(".log_in").ready(function () {
   if (localStorage.getItem("userName")) {
     $(".sucsses_login").show();
     $("#login_form").hide();
+    let expire_date = new Date();
+    expire_date = expire_date.getMinutes();
+    if (expire_date + 5 > 60) expire_date = expire_date - 60;
+    if (expire_date >= localStorage.getItem("expire")) {
+      localStorage.removeItem("expire");
+      localStorage.removeItem("userName");
+    }
   } else {
     $(".sucsses_login").hide();
   }
@@ -767,12 +774,67 @@ $(".log_in").ready(function () {
         if (flag == true) {
           $(".sucsses_login").show();
           $("#login_form").hide();
+          let date = new Date();
+          let expire = date.getMinutes() + 5;
+          if (expire > 60) expire = expire - 60;
           localStorage.setItem("userName", user);
+          localStorage.expire = expire;
         } else alert("login error");
       }
     };
 
     xhttp.open("GET", "login.json", true);
     xhttp.send();
+  });
+});
+
+////////////////////////////// animal classes and extend ////////////////////////////////////////
+
+$(".animals_classes").ready(function () {
+  class Animal {
+    constructor(name) {
+      this.name = name;
+      this.walk = "";
+    }
+    move(type_of_walk, distance_in_meter) {
+      this.walk = `${this.name} ${type_of_walk} ${distance_in_meter}m`;
+    }
+  }
+
+  class Snake extends Animal {
+    constructor(my_name) {
+      super(my_name);
+    }
+    move(type_of_walk, distance_in_meter = 5) {
+      super.move(type_of_walk, distance_in_meter);
+    }
+  }
+
+  class Horse extends Animal {
+    constructor(my_name) {
+      super(my_name);
+    }
+    move(type_of_walk, distance_in_meter = 45) {
+      super.move(type_of_walk, distance_in_meter);
+    }
+  }
+
+  $("#submit_new_animal").click(function () {
+    let animal_type = $('input[name="animal_type"]:checked').val();
+    let animal_name = $("#animal_name").val();
+    let animal_dis = $("#animal_distance").val();
+    let my_animal;
+
+    if (animal_type == "horse") {
+      my_animal = new Horse(animal_name);
+      if (animal_dis != "") my_animal.move("Galloping...", animal_dis);
+      else my_animal.move("Galloping...");
+    } else if (animal_type == "sanke") {
+      my_animal = new Snake(animal_name);
+      if (animal_dis != "") my_animal.move("Slithring...", animal_dis);
+      else my_animal.move("Slithring...");
+    }
+    alert(my_animal.walk);
+    // $("#show_animal").html(my_animal.walk);
   });
 });
