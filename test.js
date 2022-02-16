@@ -792,49 +792,53 @@ $(".log_in").ready(function () {
 
 $(".animals_classes").ready(function () {
   class Animal {
-    constructor(name) {
-      this.name = name;
-      this.walk = "";
+    constructor(theName) {
+      this.name = theName;
     }
-    move(type_of_walk, distance_in_meter) {
-      this.walk = `${this.name} ${type_of_walk} ${distance_in_meter}m`;
+    move(typeOfWalk, distanceInMeters) {
+      this.walk = `${this.name} ${typeOfWalk} ${distanceInMeters}m.`;
     }
   }
 
   class Snake extends Animal {
-    constructor(my_name) {
-      super(my_name);
+    constructor(name) {
+      super(name);
     }
-    move(type_of_walk, distance_in_meter = 5) {
-      super.move(type_of_walk, distance_in_meter);
+    move(typeOfWalk, distanceInMeters = 5) {
+      super.move(typeOfWalk, distanceInMeters);
     }
   }
 
   class Horse extends Animal {
-    constructor(my_name) {
-      super(my_name);
+    constructor(name) {
+      super(name);
     }
-    move(type_of_walk, distance_in_meter = 45) {
-      super.move(type_of_walk, distance_in_meter);
+    move(typeOfWalk, distanceInMeters = 45) {
+      super.move(typeOfWalk, distanceInMeters);
     }
   }
 
   $("#submit_new_animal").click(function () {
-    let animal_type = $('input[name="animal_type"]:checked').val();
+    let animal = $('input[name="animal_type"]:checked').val();
     let animal_name = $("#animal_name").val();
-    let animal_dis = $("#animal_distance").val();
+    let animal_dis = $("#animal_destance").val();
     let my_animal;
 
-    if (animal_type == "horse") {
+    if (animal == "horse") {
       my_animal = new Horse(animal_name);
       if (animal_dis != "") my_animal.move("Galloping...", animal_dis);
       else my_animal.move("Galloping...");
-    } else if (animal_type == "sanke") {
+      $("#show_animal_img").html(
+        `<img src="img/horse.png" style="width:60px;height:60px;">`
+      );
+    } else if (animal == "snake") {
       my_animal = new Snake(animal_name);
-      if (animal_dis != "") my_animal.move("Slithring...", animal_dis);
-      else my_animal.move("Slithring...");
+      if (animal_dis != "") my_animal.move("Slithering...", animal_dis);
+      else my_animal.move("Slithering...");
+      $("#show_animal_img").html(
+        `<img src="img/snake.png" style="width:60px;height:60px;">`
+      );
     }
-    alert(my_animal.walk);
-    // $("#show_animal").html(my_animal.walk);
+    $("#show_animal").html(my_animal.walk);
   });
 });

@@ -118,18 +118,21 @@
   </div>
 
   <div class="animals_classes">
-    <form id="my_animal">
-      <label>
-        <input type="radio" name="animal_type" value="sanke" required> Snake
-      </label>
-      <label>
-        <input type="radio" name="animal_type" value="horse" required> Horse
-      </label>
-      <input type="text" placeholder="Enter name of the animal" id="animal_name" required />
-      <input type="number" placeholder="Enter distance" id="animal_distance" />
-      <button id="submit_new_animal">click me</button>
-    </form>
+    <label>
+      <input type="radio" name="animal_type" value="snake" id="option-1" required> Snake
+    </label>
+    <label>
+      <input type="radio" name="animal_type" value="horse" id="option-2" required> Horse
+    </label>
+    <br>
+    <input type=" text" placeholder="Enter name of animal" id="animal_name" required />
+    <input type="number" placeholder="Enter how mach did he walke" id="animal_destance" />
+    <br>
+    <button type="submit" id="submit_new_animal">submit</button>
+
+    <div id="show_animal_img"></div>
     <div id="show_animal"></div>
+
   </div>
 </body>
 
