@@ -842,3 +842,36 @@ $(".animals_classes").ready(function () {
     $("#show_animal").html(my_animal.walk);
   });
 });
+
+////////////////////////////// async clock and beeps ////////////////////////////////////////
+
+// setInterval(my_time, 1000);
+
+// function my_time() {
+//   let time = new Date();
+//   $(".show_time").html(time.toLocaleTimeString());
+// }
+
+$(".show_time").ready(function () {
+  window.setInterval(function () {
+    let time = new Date();
+    $(".show_time").html(time.toLocaleTimeString());
+  });
+});
+
+$(".how_many_beeps").ready(function () {
+  $("#submit_beeps").click(function () {
+    let how_many_beeps = $("#how_many_beeps").val();
+    let how_many_seconds = $("#how_many_seconds").val() * 1000;
+    sound_in_loop(1, how_many_beeps, how_many_seconds);
+  });
+});
+
+function sound_in_loop(index, beeps, secs) {
+  new Audio("/sounds/beep1.mp3").play();
+  setTimeout(function () {
+    index++;
+
+    if (index <= beeps) sound_in_loop(index, beeps, secs);
+  }, secs);
+}
