@@ -875,3 +875,90 @@ function sound_in_loop(index, beeps, secs) {
     if (index <= beeps) sound_in_loop(index, beeps, secs);
   }, secs);
 }
+
+////////////////////////////// classes and extend ////////////////////////////////////////
+//type 1
+// class Animals {
+//   constructor(name, age) {
+//     let _name = name;
+//     let _age = age;
+//     this.getName = function () {
+//       return _name;
+//     };
+
+//     this.getAge = function () {
+//       return _age;
+//     };
+//     this.setAge = function (newAge) {
+//       _age = newAge;
+//     };
+//     // this.name = name;
+//     // this.age = age;
+//   }
+//   updateAge(newAge) {
+//     this.setAge(newAge);
+//   }
+// }
+
+// class Brids extends Animals {
+//   constructor(name, age) {
+//     super(name, age);
+//   }
+//   sing() {
+//     return `${this.getName(this.name)} chif chif`;
+//   }
+// }
+
+// class Penguin extends Brids {
+//   constructor(name, age, canSwim) {
+//     super(name, age);
+//     this.can_swim = canSwim;
+//   }
+//   dance() {
+//     return `${this.getName(this.name)} can dance`;
+//   }
+// }
+
+// class Cats extends Animals {
+//   constructor(name, age, collarColor) {
+//     super(name, age);
+//     this.collarColor = collarColor;
+//   }
+// }
+
+// let pingo = new Brids("pingo", 16);
+// console.log(pingo.getName(this.name));
+
+//type2
+function Animals(name, age) {
+  let newAnimal = Object.create(animalconstractor);
+  newAnimal.name = name;
+  newAnimal.age = age;
+  return newAnimal;
+}
+
+let animalconstractor = {
+  sing: function () {
+    return `${this.name} can sing`;
+  },
+  dance: function () {
+    return `${this.name} can dance`;
+  },
+};
+
+function Cats(name, age, collarColor) {
+  let newCat = Animals(name, age);
+  Object.setPrototypeOf(newCat, catConstractor);
+  newCat.collarColor = collarColor;
+  return newCat;
+}
+
+let catConstractor = {
+  collar() {
+    return `I have ${this.collarColor} collar`;
+  },
+};
+
+Object.setPrototypeOf(catConstractor, animalconstractor);
+let clara = Cats("clara", 3, "pink");
+console.log(clara.sing());
